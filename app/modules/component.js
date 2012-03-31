@@ -2,6 +2,7 @@ define([
   "namespace",
 
   // Libs
+  "use!jquery",
   "use!backbone"
 
   // Modules
@@ -9,7 +10,7 @@ define([
   // Plugins
 ],
 
-function(namespace, Backbone) {
+function(namespace, jQuery, Backbone) {
 
   // Create a new module
   var Component = namespace.module();
@@ -17,7 +18,14 @@ function(namespace, Backbone) {
   // Component extendings
   Component.Model = Backbone.Model.extend({ /* ... */ });
   Component.Collection = Backbone.Collection.extend({ /* ... */ });
-  Component.Router = Backbone.Router.extend({ /* ... */ });
+  Component.Router = Backbone.Router.extend({
+  	routes: {
+  		"layout/add": "addLayout"
+  	},
+  	'addLayout': function () {
+  		console.info('route function addLayout called.');
+  	}
+  });
 
   // This will fetch the Layout template and render it.
   Component.Views.Layout = Backbone.View.extend({
