@@ -12,12 +12,19 @@ define([
 function(namespace, Backbone) {
 
   // Create a new module
-  var Example = namespace.module();
+  var Example = namespace.module({name: 'example'});
 
   // Example extendings
   Example.Model = Backbone.Model.extend({ /* ... */ });
   Example.Collection = Backbone.Collection.extend({ /* ... */ });
-  Example.Router = Backbone.Router.extend({ /* ... */ });
+  Example.Router = Backbone.Router.extend({
+    routes: {
+      'example/route': 'justAnExample'
+    },
+    'justAnExample': function (hash) {
+      alert("This is a route from the Example module.");
+    }
+  });
 
   // This will fetch the tutorial template and render it.
   Example.Views.Tutorial = Backbone.View.extend({
