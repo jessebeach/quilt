@@ -13,17 +13,17 @@ define([
 function(namespace, jQuery, Backbone) {
 
   // Create a new module
-  var Component = namespace.module();
+  var Component = namespace.module({name: 'component'});
 
   // Component extendings
   Component.Model = Backbone.Model.extend({ /* ... */ });
   Component.Collection = Backbone.Collection.extend({ /* ... */ });
   Component.Router = Backbone.Router.extend({
   	routes: {
-  		"layout/add": "addLayout"
+  		"component/add": "addComponent"
   	},
-  	'addLayout': function () {
-  		console.info('route function addLayout called.');
+  	'addComponent': function () {
+  		console.info('route function addComponent called.');
   	}
   });
 

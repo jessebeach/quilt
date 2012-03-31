@@ -50,6 +50,22 @@ function($, _, Backbone) {
     },
 
     // Keep active application instances namespaced under an app object.
-    app: _.extend({}, Backbone.Events)
+    app: _.extend({}, Backbone.Events),
+
+    // Add module routes and route callbacks to the app.
+    mergeSubroutes: function(Modules) {
+      for (var i = 0; i < Modules.length; i++) {
+        var m = Modules[i];
+        // Proceed if the module extends Backbone.Router.
+        if (m.Router) {
+          var subrouter = new m.Router();
+          if (subrouter.routes) {
+            // Extend the app's routes and route callbacks 
+            // with the submodule's routes and route callbacks.
+            $.extend(true, this, subrouter);
+          }
+        }
+      }
+    }
   };
 });

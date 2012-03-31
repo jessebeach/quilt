@@ -2,7 +2,7 @@ define([
   "namespace",
 
   // Libs
-  "use!jquery",
+  "jquery",
   "use!backbone"
 
   // Modules
@@ -10,33 +10,25 @@ define([
   // Plugins
 ],
 
-function(namespace, jQuery, Backbone) {
+function(namespace, $, Backbone) {
 
   // Create a new module
-  var Layout = namespace.module({name: 'layout'});
+  var Frame = namespace.module({name: 'frame'});
 
-  // Layout extendings
-  Layout.Model = Backbone.Model.extend({
-    type: 'layout'
-  });
-  Layout.Collection = Backbone.Collection.extend({ /* ... */ });
-  Layout.Router = Backbone.Router.extend({
-  	routes: {
-  		"layout/add": "addLayout"
-  	},
-  	'addLayout': function () {}
-  });
+  // Frame extendings
+  Frame.Model = Backbone.Model.extend({ /* ... */ });
+  Frame.Collection = Backbone.Collection.extend({ /* ... */ });
 
   // This will fetch the Layout template and render it.
-  Layout.Views.Layout = Backbone.View.extend({
-    template: "app/templates/layout.html",
+  Frame.Views.AppFrame = Backbone.View.extend({
+    template: "app/templates/frame.html",
 
     render: function(done) {
       var view = this;
 
       // Fetch the template, render it to the View element and call done.
       namespace.fetchTemplate(this.template, function(tmpl) {
-        view.el.innerHTML = tmpl();
+        view.el = tmpl();
 
         // If a done function is passed, call it with the element
         if (_.isFunction(done)) {
@@ -47,6 +39,6 @@ function(namespace, jQuery, Backbone) {
   });
 
   // Required, return the module for AMD compliance
-  return Layout;
+  return Frame;
 
 });
