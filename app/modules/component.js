@@ -12,16 +12,16 @@ define([
 function(namespace, Backbone) {
 
   // Create a new module
-  var Example = namespace.module();
+  var Component = namespace.module();
 
-  // Example extendings
-  Example.Model = Backbone.Model.extend({ /* ... */ });
-  Example.Collection = Backbone.Collection.extend({ /* ... */ });
-  Example.Router = Backbone.Router.extend({ /* ... */ });
+  // Component extendings
+  Component.Model = Backbone.Model.extend({ /* ... */ });
+  Component.Collection = Backbone.Collection.extend({ /* ... */ });
+  Component.Router = Backbone.Router.extend({ /* ... */ });
 
-  // This will fetch the tutorial template and render it.
-  Example.Views.Tutorial = Backbone.View.extend({
-    template: "app/templates/example.html",
+  // This will fetch the Layout template and render it.
+  Component.Views.Layout = Backbone.View.extend({
+    template: "app/templates/component.html",
 
     render: function(done) {
       var view = this;
@@ -39,6 +39,6 @@ function(namespace, Backbone) {
   });
 
   // Required, return the module for AMD compliance
-  return Example;
+  return Component;
 
 });

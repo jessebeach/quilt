@@ -6,24 +6,25 @@ require([
   "use!backbone",
 
   // Modules
-  "modules/example"
+  "modules/component"
 ],
 
-function(namespace, $, Backbone, Example) {
+function(namespace, $, Backbone, Component) {
 
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
     routes: {
       "": "index",
-      ":hash": "index"
+      ":hash": "index",
+      "layout/add": "addLayout"
     },
 
     index: function(hash) {
       var route = this;
-      var tutorial = new Example.Views.Tutorial();
+      var component = new Component.Views.Layout();
 
-      // Attach the tutorial to the DOM
-      tutorial.render(function(el) {
+      // Attach the component to the DOM
+      component.render(function(el) {
         $("#main").html(el);
 
         // Fix for hashes in pushState and hash fragment
@@ -38,6 +39,10 @@ function(namespace, $, Backbone, Example) {
           route._alreadyTriggered = true;
         }
       });
+    },
+    
+    addLayout: function (hash) {
+    
     }
   });
 
